@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            for(var i = 1; i < 152; i++){
+                $('#pokemon').append(`<img id='${i}' src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${i}.png'>`)
+            }
+        $("img").click(function(){
+            var imageSource = $(this).attr("src")
+            $.get(`https://pokeapi.co/api/v2/pokemon/${this.id}/`,
+                function (data) {
+                    var html_str = "";
+                    html_str += "<h3 style='text-align: center;'>" + data.name + "</h3>";
+                    html_str = html_str.toUpperCase();
+                    html_str += "<img src=" + imageSource +" style='margin-left: 75px;'>";
+                    html_str += "<ul>"+"Types"
+                    for(var i = 0; i<data.types.length; i++){
+                        html_str += "<li>" + data.types[i].type.name + "</li>"
+                    }
+                    html_str += "</ul>"
+                    html_str += "<p style='margin-left:20px'>Height:" + data.height + "</p>"
+                    html_str += "<p style='margin-left:20px'>Height:" + data.weight + "</p>"
+                    $("#pokedex-body").html(html_str);
+                    
+                },
+                "json"
+            );
+            console.log($(this).attr("src"))
+        })
+
+        });
+
+
+    </script>
+    <title>Pokemon</title>
+</head>
+<body>
+    <div id="pokemon">
+        
+    </div>
+    <div id="pokedex">
+        <div id="pokedex-body">
+            
+        </div>
+ 
+    </div>
+    
+</body>
+</html>

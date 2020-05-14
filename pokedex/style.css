@@ -1,0 +1,23 @@
+#pokemon{
+    width:600px; 
+    display:inline-block
+}
+
+#pokedex-body{
+    width:250px; 
+    height: 350px; 
+    background-color:white; 
+    margin: 0 auto;
+    margin-top: 20px; 
+}
+
+#pokedex{
+    width:300px; 
+    height: 400px; 
+    display:inline-block;
+     background-color: red; 
+     vertical-align: top; 
+     position: fixed; 
+     top: 0; 
+     right:0;
+}

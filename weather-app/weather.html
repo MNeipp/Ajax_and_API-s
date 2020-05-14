@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What's the weather?</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('form').submit(function () {
+                city = $("input#city").val()
+                state = $("input#state").val()
+                var html_str = ''
+                $.get(`https://api.openweathermap.org/data/2.5/weather?q=${city},${state}&units=imperial&appid=e919dde2fe09f3242cf22c868700408b`,
+                    function (data) {
+                        console.log(data);
+                        html_str += "<h3>Current Weather</h3>"
+                        html_str += "<h4>" + city + ", " + state + " : " + data.weather[0]["description"] +
+                            "</h4>"
+                        html_str += "<h4>Temperature: " + data.main.temp + "&#8457</h4>"
+                        html_str += "<h4>Longitude: " + data.coord.lat + ", Latitude: " + data.coord
+                            .lon + "</h4>"
+                        $("#info").html(html_str);
+                    }, 'json');
+                // don't forget to return false so the page doesn't refresh
+                return false;
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <form>
+        <label for="city">City</label>
+        <input type="text" id="city" placeholder="Los Angeles">
+        <label for="sate">State</label>
+        <input type="text" id="state" placeholder="California">
+        <input type="submit" value="submit">
+    </form>
+    <div id="info">
+
+    </div>
+
+</body>
+
+</html>
