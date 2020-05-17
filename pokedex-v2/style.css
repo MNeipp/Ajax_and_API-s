@@ -96,9 +96,7 @@ div.images div#circle{
     left: 245px;
     /* box-shadow: 0px 0px 5px 2px #000000; */
     box-shadow: inset 0px 0px 2px 2px #000000, 0px 0px 5px 2px #000000;
-    display:flex;
-    justify-content: center;
-    align-items: center;
+
 
 
 }
