@@ -1,0 +1,105 @@
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+body{
+    background-image: linear-gradient(#d0451b, #bc3315 41%, black 42% 43%, white 44% 46%, black 47% 48%, white 49%);
+}
+div#wrapper{
+    width:900px;
+    padding:15px;
+    margin: 0 auto;
+}
+form{
+    /* outline:1px solid black; */
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+form p{
+    font-size:12px;
+    font-style:italic;
+}
+div.pokedex-header{
+    /* outline:1px solid black; */
+    width:600px;
+    margin:0px auto 12px;
+    text-align:center
+}
+div.pokedex-header h1{
+    display:inline-block;
+    margin: 0 15px 0 15px;
+    vertical-align: bottom;
+}
+img{
+    width: 200px;
+    position:relative;
+    bottom: 20px;
+
+}
+div.images{
+    margin-bottom: -50px;
+}
+div.pokedex-body{
+    min-width: 500px;
+    margin:0 auto;
+    display:flex;
+    justify-content: center;
+    /* outline: black solid 1px; */
+}
+td.category{
+    width: 250px;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding:5px
+  }
+  .myButton {
+	box-shadow:inset 0px 1px 0px 0px #cf866c;
+	background:linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
+	background-color:#d0451b;
+	border-radius:3px;
+	border:1px solid #942911;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+    padding:6px 24px;
+    margin-bottom:4px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #854629;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
+	background-color:#bc3315;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+.searchBar{
+    padding:4px;
+    border:2px solid #942911;
+}
+
+div.images div#circle{
+    background-color:white;
+    width:100px;
+    height:100px;
+    border:3px solid black;
+    border-radius: 50%;
+    position: relative;
+    bottom:60px;
+    left: 245px;
+    /* box-shadow: 0px 0px 5px 2px #000000; */
+    box-shadow: inset 0px 0px 2px 2px #000000, 0px 0px 5px 2px #000000;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+

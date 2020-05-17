@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/0eb52090db.js" crossorigin="anonymous"></script>
+    <script>
+        //function to generate pokemon
+            function catchPokemon(pokemon){
+                $.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`, //access the API
+                    function(res){
+                        // console.log(res)
+                        //insert sprites
+                        var defaultSprite = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + res.id + '.png';
+                        var shinySprite = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/' + res.id + '.png';
+                        var html_str = `<img class="${res.id}"src='${defaultSprite}' alt="default pokemon sprite">`;
+                        html_str += `<img src='${shinySprite}' alt="default pokemon sprite">`;
+                        $('#sprites').html(html_str);
+                        // insert name and ID#
+                        html_str ='#' + res.id + ` <span class ="${res.name}">` + res.name.toUpperCase() + "</span>";
+                        $('h1').html(html_str);
+                        //change Type
+                        html_str = ''
+                        for (var i = 0; i < res.types.length; i++){
+                            html_str += res.types[i].type.name + '<br>'
+                        }
+                        $('.type').html(html_str)
+                        //change height
+                        var height = Math.round(res.height*3.937)
+                        html_str = `${height} inches`
+                        $('.height').html(html_str)
+                        //change weight
+                        var weight = Math.round(res.weight/4.536)
+                        html_str = `${weight} lbs`
+                        $('.weight').html(html_str)
+                    },'json');
+                $.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemon}/`, //access species-API
+                    function(res){
+                        console.log(res);
+                        var html_str = ''
+                        //change pokedex entry
+                        for (var i = 0; i < 3; i++){
+                            if(res.flavor_text_entries[i].language.name == "en")
+                            html_str += res.flavor_text_entries[i].flavor_text
+                        }
+                        $('.pokedex-entry').html(html_str)
+                        //change evolves from
+                        if (res.evolves_from_species === null){
+                            html_str = "";
+                        }
+                        else{
+                            html_str = res.evolves_from_species.name;
+                        }
+                        $('.evo-from').html(html_str);
+                        //Pokemon cry
+                    }, 'json'); 
+            }
+        $(document).ready(function () {
+                var randomPokemon = Math.floor(Math.random()*150) +1
+                    catchPokemon(randomPokemon)
+
+            //View next pokemon in pokedex
+            $("#next").click(function(){
+                nextPokemon = $("img").attr("class")
+                nextPokemon ++
+                catchPokemon(nextPokemon)
+
+            })
+            //View previous pokemon in pokedex
+            $("#previous").click(function(){
+                previousPokemon = $("img").attr("class")
+                previousPokemon --
+                catchPokemon(previousPokemon)
+            })
+            $('form').submit(function () {
+                    pokemon = $('input#pokemon').val();
+                    pokemon = pokemon.toLowerCase();
+                    catchPokemon(pokemon)
+                    return false;
+                });
+            $('.playButton').click(function(){
+                var cry = $('span').attr("class");
+                $('audio').attr('src', `http://play.pokemonshowdown.com/audio/cries/${cry}.mp3`)
+                var pokemonCry = $('audio')
+                pokemonCry.play()
+            });
+            })
+            
+            
+
+        
+    </script>
+    <title>Pokedex</title>
+</head>
+
+<body>
+    <div id="wrapper">
+        <form>
+            <input class="searchBar" type="text" id="pokemon" placeholder="eg. bulbasaur, 1">
+            <input class="myButton" type="submit" value="submit">
+            <p>Pokemon Name or Pokedex Number</p>
+        </form>
+
+        <div class="pokedex">
+
+            <div class="pokedex-header">
+                <div class="images">
+                    <div id="sprites">
+                    </div>
+                    <div id="circle"></div>
+                </div>
+                <button id="previous" class="myButton">previous</button>
+                <h1></h1>
+                <button id="next" class="myButton">next</button>
+            </div>
+            <div class="pokedex-body">
+                <table>
+                    <tr>
+                        <td class="category">Type</td>
+                        <td class="type"></td>
+                    </tr>
+                    <tr>
+                        <td class="category">Pokedex Entry</td>
+                        <td class="pokedex-entry"></td>
+                    </tr>
+                    <tr>
+                        <td class="category">Height</td>
+                        <td class="height"></td>
+                    </tr>
+                    <tr>
+                        <td class="category">Weight</td>
+                        <td class="weight"></td>
+                    </tr>
+                    <tr>
+                        <td class="category">Evolves from </td>
+                        <td class="evo-from"></td>
+                    </tr>
+                    <tr>
+                        <td class="category">Cry</td>
+                        <td class="cry"><a class ="playButton"><i class="far fa-play-circle"></i></a></td>
+                    </tr>
+                </table>
+                <div class="pokemon-cry">
+                        <audio> 
+                            <source src='http://play.pokemonshowdown.com/audio/cries/bulbasaur.mp3' type='audio/mpeg'>
+                        </audio>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
