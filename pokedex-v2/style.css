@@ -5,6 +5,7 @@
 
 body{
     background-image: linear-gradient(#d0451b, #bc3315 41%, black 42% 43%, white 44% 46%, black 47% 48%, white 49%);
+    min-height: 620px;
 }
 div#wrapper{
     width:900px;
@@ -43,9 +44,10 @@ div.images{
 }
 div.pokedex-body{
     min-width: 500px;
+    height:234.67px;
     margin:0 auto;
-    display:flex;
-    justify-content: center;
+    /* display:flex; */
+    /* justify-content: center; */
     /* outline: black solid 1px; */
 }
 td.category{
@@ -55,6 +57,16 @@ table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
     padding:5px
+  }
+  .myButton.right {
+      position: absolute;
+      right:0;
+      bottom:0;
+  }
+  .myButton.left{
+      position:absolute;
+      left:0;
+      bottom:0;
   }
   .myButton {
 	box-shadow:inset 0px 1px 0px 0px #cf866c;
@@ -70,15 +82,29 @@ table, th, td {
     padding:6px 24px;
     margin-bottom:4px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #854629;
+    text-shadow:0px 1px 0px #854629;
 }
-.myButton:hover {
+.myButton.right:hover {
 	background:linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
-	background-color:#bc3315;
+    background-color:#bc3315;
+    position: absolute;
+    right:0;
+    bottom:0;
 }
-.myButton:active {
-	position:relative;
-	top:1px;
+.myButton.right:active {
+	position:absolute;
+    bottom:1px;
+}
+.myButton.left:hover {
+	background:linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
+    background-color:#bc3315;
+    position:absolute;
+    left:0;
+    bottom:0;
+}
+.myButton.left:active {
+	position:absolute;
+	bottom:1px;
 }
 .searchBar{
     padding:4px;
@@ -87,17 +113,17 @@ table, th, td {
 
 div.images div#circle{
     background-color:white;
-    width:100px;
-    height:100px;
+    width:125px;
+    height:125px;
     border:3px solid black;
     border-radius: 50%;
     position: relative;
     bottom:60px;
-    left: 245px;
-    /* box-shadow: 0px 0px 5px 2px #000000; */
+    left: 240px;
     box-shadow: inset 0px 0px 2px 2px #000000, 0px 0px 5px 2px #000000;
-
-
-
+}
+div.pokedex div.name-bar{
+    width:600px;
+    position:relative;
 }
 
